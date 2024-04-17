@@ -16,8 +16,9 @@ support a larger number of vehicles, however, bear in mind that further code opt
 * Synchronise two vehicles in order to start tracking a trajectory simultaneously
 * Log flight data in rosbags and make plots and animations using the MATLAB functions provided
 
-
+<p align = "center">
 <img src="media/relay.gif" alt="Relay Manoeuvre Arena" height="300" align="center"/>
+</p>
 
 ## Citation
 

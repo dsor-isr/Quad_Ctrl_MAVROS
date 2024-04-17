@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Experiment mode -->
+    <arg name="mode" value="1"/>
+    <!-- Record bag -->
+    <arg name="record_bag" default="true"/>
+    <arg name="bag_name" default="experimental_test"/>
+    <!-- Trajectory csv file -->
+    <arg name="dir_trajectories" default="$(find quad_ctrl_mavros)/trajectories/"/>
+    <arg name="trajectory_name" default="steps/z_step"/>
+    <arg name="trajectory_file" default="$(arg dir_trajectories)$(arg trajectory_name).csv"/>
+    <!-- UAV0 -->
+    <arg name="ns_1" default="uav0"/>
+    <!-- <arg name="ns_1" default="uav1"/> -->
+    <group ns="uav">
+        <!-- MAVROS -->
+        <arg name="ID" value="2"/>
+        <arg name="fcu_url" default="udp://:15002@"/>
+        <!-- <arg name="ID" value="3"/>
+        <arg name="fcu_url" default="udp://:15003@"/> -->
+        <!-- <arg name="ID" value="4"/>
+        <arg name="fcu_url" default="udp://:15004@"/> -->
+        <group ns="$(arg ns_1)">
+            <include file="$(find mavros)/launch/px4.launch">
+                <arg name="fcu_url" value="$(arg fcu_url)"/>
+                <arg name="gcs_url" value=""/>
+                <arg name="tgt_system" value="$(eval 0 + arg('ID'))"/>
+                <arg name="tgt_component" value="1"/>
+            </include>
+        </group>
+        <!-- Configuration YAML file -->
+        <rosparam command="load" file="$(find quad_ctrl_mavros)/config/params_intel_1.yaml"/>
+        <!-- <rosparam command="load" file="$(find quad_ctrl_mavros)/config/params_intel_2.yaml"/> -->
+        <!-- Tracking Controller -->
+        <node pkg="quad_ctrl_mavros" name="quad_ctrl_1" type="quad_ctrl_mavros_node" 
+                    args="$(arg trajectory_file) $(arg mode) $(arg ns_1)" output="screen"/>
+    </group>
+    <!-- ROSBAG -->
+    <!-- Ensure that the folder where the bags are stored exists -->
+    <node pkg="rosbag" type="record" name="rosbag_record" 
+            args="record -a -O $(find quad_ctrl_mavros)/bags/$(arg bag_name).bag" if="$(arg record_bag)"/>
+</launch>

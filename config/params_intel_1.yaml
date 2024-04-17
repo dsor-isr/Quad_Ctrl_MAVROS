@@ -1,0 +1,56 @@
+uav0: {
+
+  physical_params: {
+
+    mass: 1.35,
+
+    gravity: 9.8,
+
+    inertia: {
+      jxx: 0.0138,
+      jxy: 0.0,
+      jxy: 0.0,
+      jyx: 0.0,
+      jyy: 0.0110,
+      jyz: 0.0,
+      jzx: 0.0,
+      jzy: 0.0,
+      jzz: 0.0082,
+    }
+  },
+
+  throttle: {
+    throttle_min: 1.74,
+    throttle_max: 19.1,
+  },
+
+  ang_vel: {
+    w_max_x: 6.0,
+    w_max_y: 6.0,
+    w_max_z: 6.0,
+  },
+
+  gains: {
+    kp: 4.5,
+    kv: 4.3,
+    kix: 0.5,
+    kiy: 0.5,
+    kiz: 0.5,
+
+    integral_bounds: {
+      x: 0.1,
+      y: 0.25,
+      z: 0.15,
+    }
+    
+  },
+
+  safety_zone: {
+    x_min: -2.5,
+    x_max: 2.5,
+    y_min: -1.8,
+    y_max: 1.8,
+    z_min: 0.0,
+    z_max: 2.4,
+  }
+}

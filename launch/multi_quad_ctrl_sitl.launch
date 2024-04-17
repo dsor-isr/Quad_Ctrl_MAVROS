@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- SITL mode -->
+    <arg name="mode" value="0"/>
+    <!-- Record bag -->
+    <arg name="record_bag" default="true"/>
+    <arg name="bag_name" default="gazebo_test"/>
+    <!-- Trajectory csv file -->
+    <arg name="dir_trajectories" default="$(find quad_ctrl_mavros)/trajectories/"/>
+    <arg name="trajectory_name_1" default="steps/z_steps/z_step_1"/>
+    <arg name="trajectory_name_2" default="steps/z_steps/z_step_2"/>
+    <arg name="trajectory_file_1" default="$(arg dir_trajectories)$(arg trajectory_name_1).csv"/>
+    <arg name="trajectory_file_2" default="$(arg dir_trajectories)$(arg trajectory_name_2).csv"/>
+    <!-- Namespace of the vehicles (uav/uavX) -->
+    <!-- Make sure that the MAVROS topics are also under these namespaces -->
+    <arg name="ns_1" default="uav0"/>
+    <arg name="ns_2" default="uav1"/>
+    <group ns="uav">
+        <!-- UAV0 -->
+        <!-- Configuration YAML file -->
+        <rosparam command="load" file="$(find quad_ctrl_mavros)/config/params_1.yaml"/>
+        <!-- Tracking Controller -->
+        <node pkg="quad_ctrl_mavros" name="quad_ctrl_1" type="quad_ctrl_mavros_node" 
+                    args="$(arg trajectory_file_1) $(arg mode) $(arg ns_1) $(arg ns_2)" output="screen"/>
+        <!-- UAV1 -->
+        <!-- Configuration YAML file -->
+        <rosparam command="load" file="$(find quad_ctrl_mavros)/config/params_2.yaml"/>
+        <!-- Tracking Controller -->
+        <node pkg="quad_ctrl_mavros" name="quad_ctrl_2" type="quad_ctrl_mavros_node" 
+                    args="$(arg trajectory_file_2) $(arg mode) $(arg ns_2) $(arg ns_1)" output="screen"/>
+    </group>
+    <!-- ROSBAG -->
+    <!-- Ensure that the folder where the bags are stored exists -->
+    <node pkg="rosbag" type="record" name="rosbag_record" 
+            args="record -a -O $(find quad_ctrl_mavros)/bags/$(arg bag_name).bag" if="$(arg record_bag)"/>
+</launch>

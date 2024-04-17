@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>quad_ctrl_mavros</name>
+  <version>1.0.0</version>
+  <description>
+    Quad_Ctrl_MAVROS -- Implement trajectory tracking controllers 
+    for multirotors equipped with the PX4 autopilot by leveraging 
+    the features of ROS and the MAVROS package.
+  </description>
+
+  <maintainer email="joao.s.pinto@tecnico.ulisboa.pt">Joao Pinto</maintainer>
+  <author email="joao.s.pinto@tecnico.ulisboa.pt">Joao Pinto</author>
+  <license>BSD</license>
+
+  <url type="repository">https://github.com/jschpinto/Quad_Ctrl_MAVROS.git</url>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- packages -->
+  <build_depend>message_generation</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>mavros_msgs</build_depend>
+  <build_depend>tf2</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>mavros_msgs</build_export_depend>
+  <build_export_depend>tf2</build_export_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>mavros_msgs</exec_depend>
+  <exec_depend>tf2</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+
+  <export>
+    <rosindex>
+      <tag>px4</tag>
+      <tag>mavros</tag>
+      <tag>trajectory tracking</tag>
+      <tag>multirotors</tag>
+    </rosindex>
+  </export>
+</package>

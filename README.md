@@ -16,7 +16,10 @@ support a larger number of vehicles, however, bear in mind that further code opt
 * Synchronise two vehicles in order to start tracking a trajectory simultaneously
 * Log flight data in rosbags and make plots and animations using the MATLAB functions provided
 
-![](media/relay.gif)
+<p align="center">
+  <a href="https://youtu.be/azqqJ64ueuo" target="_blank"><img src="media/relay_gazebo.png" alt="Relay Manoeuvre" height="400"/></a>
+  <img src="media/relay.gif" alt="Relay Manoeuvre Arena" height="300" align="center"/>
+</p>
 
 ## Citation
 
@@ -88,11 +91,11 @@ MAVROS is available [triple-licensed](https://github.com/mavlink/mavros) as an o
 The work of João Pinto was supported by a PhD grant funded by Fundação para a Ciência e Tecnologia (FCT).
 
 <p float="left" align="center">
-  <img src="media/imgs/dsor_logo.png" width="90" align="center" />
-  <img src="media/imgs/isr_logo.png" width="200" align="center"/> 
-  <img src="media/imgs/larsys_logo.png" width="200" align="center"/> 
-  <img src="media/imgs/ist_logo.png" width="200" align="center"/> 
-  <img src="media/imgs/fct_logo.png" width="200" align="center"/> 
+  <img src="media/logos/dsor_logo.png" width="90" align="center"/>
+  <img src="media/logos/isr_logo.png" width="200" align="center"/> 
+  <img src="media/logos/larsys_logo.png" width="200" align="center"/> 
+  <img src="media/logos/ist_logo.png" width="200" align="center"/> 
+  <img src="media/logos/fct_logo.png" width="200" align="center"/> 
 </p>
 
 
